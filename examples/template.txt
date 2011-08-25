@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	</head>
+	<body>
+		$open;
+		Mon formulaire :<br />
+		$text->error;
+		$text->label; $text->element;<br />
+		<br />
+		$submit->element;<br />
+		$close;
+
+		About template : <br />
+		- Create a file<br />
+		- "Design" your form, in the HTML way (in this case I made an entire HTML file, generally you only insert your forms)<br />
+		- API :<br />
+		&#36;open; &lt;form ...><br />
+		&#36;close; &lt;/form><br />
+		<br />
+		&#36;elementName->label; Element Label :<br />
+		&#36;elementName->element; &lt;input ...> | &lt;select...> | ...<br />
+		&#36;elementName->error; I'm an error message !<br />
+	</body>
+</html>
+
