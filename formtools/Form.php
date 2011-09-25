@@ -227,13 +227,24 @@ class Form extends Attribs {
 
 	}
 
-	public function getValues(){
+	public function getValues(array $list = null, $avoid = true){
 
 		$return = array();
 
+		if($list == null){
+
+			$list = array();
+
+		}
+
 		foreach($this->_elements AS $name => $element){
 		
-			if(!($element instanceof Form\Element\Push)){
+			if(!($element instanceof Form\Element\Push) 
+				AND (($avoid == true AND !\in_array($name, $list))
+					OR
+					($avoid == false AND \in_array($name, $list))
+				)
+			){
 
 				$return[$name] = $element->getValue();
 
