@@ -108,10 +108,10 @@ abstract class Element extends \formtools\Attribs {
 	/**
 	 * Add a validator
 	 * addValidator(\Closure $validator)
-	 * addValidator(\formtools\Filter\Base $validator)
+	 * addValidator(\formtools\Validate\Base $validator)
 	 * addValidator($filter, array $params = null);
 	 *
-	 * @param \Closure|string $validator Closure or name of validator in (\yacodo\formtools\Validator)
+	 * @param \Closure|string $validator Closure or name of validator in (formtools\Validator)
 	 * @param array List of parameters to the validator method
 	 * @return Element
 	**/
