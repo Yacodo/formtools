@@ -7,7 +7,9 @@ class Radio extends Options {
 	function generateElement(){
 
 		$return = '';
-		
+
+		$id = $this->getAttrib('id');
+		$i = 0;
 
 		foreach($this->_options AS $value => $label){
 
@@ -17,6 +19,7 @@ class Radio extends Options {
 			$attribs = array();
 			$attribs['type'] = 'radio';
 			$attribs['value'] = $value;
+			$attribs['id'] = $id . '_' . ++$i;
 
 			if($value == $this->_value){
 
@@ -24,7 +27,7 @@ class Radio extends Options {
 
 			}
 
-			$return.= '<input'.$this->generateAttribs($attribs).'/> '.$label;
+			$return.= '<input' . $this->generateAttribs($attribs) . '/> ' . $label;
 
 		}
 

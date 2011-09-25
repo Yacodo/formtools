@@ -20,7 +20,7 @@ abstract class Element extends \formtools\Attribs {
 
 	abstract public function generateElement();
 
-	final public function __construct($name = null, $label = null, $decorators = true){
+	final public function __construct($name, $label = null, $decorators = true){
 
 		if(!\is_string($name)){
 
@@ -30,6 +30,10 @@ abstract class Element extends \formtools\Attribs {
 
 		$this->_label = $label;
 		$this->addAttrib('name', $name);
+
+		$type = substr(\get_class($this), \strlen(__NAMESPACE__ . '\Element\\'));
+
+		$this->addAttrib('id', $name . '_' . $type);
 
 		$this->_filters = array();
 		$this->_validators = array();
@@ -180,10 +184,11 @@ abstract class Element extends \formtools\Attribs {
 
 	public function clearDecorators(){
 
-		$this->decorators()
-			->errorDecorators()
-			->labelDecorators()
-			->elementDecorators();
+		$this->setPosition();
+		$this->setDecorators();
+		$this->setErrorDecorators();
+		$this->setLabelDecorators();
+		$this->setElementDecorators();
 
 		return $this;
 
@@ -197,20 +202,11 @@ abstract class Element extends \formtools\Attribs {
 
 	public function generateLabel(){
 
-		/**
-		 * TODO
-		 * Need to generate id if missing, accessibility will rule the world... one day.
-		 * Like elementName_elementType (formName isn't required...)
-		**/
-		if(($id = $this->getAttrib('id')) !== false){
+		$id = $this->getAttrib('id');
 
-			$this->labelDecorators(
-				$this->_labelDecorators['prepend'].'<label for="'.$id.'">',
-				'</label>'.$this->_labelDecorators['append']);
-
-		}
-
-		return $this->_labelDecorators['prepend'] . $this->getLabel() . $this->_labelDecorators['append'];
+		return $this->_labelDecorators['prepend'] 
+			. '<label for="' . $id . '">' . $this->getLabel() . '</label>'
+			. $this->_labelDecorators['append'];
 
 	}
 

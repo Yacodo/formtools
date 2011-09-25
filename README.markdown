@@ -16,7 +16,7 @@ Basic knowledge:
 	- Options (Radio, Select and one day MultiCheckbox for name="checkbox[keyOne]" like)
 	- And Textarea (4 types ? nooo !)
 - Simple filter and validator
-	- Take a look in the source, I use some PHP function : you may need to know thier behavior
+	- Take a look in the source, I use some PHP function : you may need to know their behavior
 	- Can use Closure
 	- Need perfect filter and validator ? Create your own.
 - Inspired by Zend_Form system, but formtools focus only on form (Filter and Validate on ZF are reusable elsewhere)
@@ -31,7 +31,6 @@ Documentation:
 
 TODO:
 -----
-- formtools\Form\Element->generateLabel() Generate a smart ID if missing 
 - Add a MultipleCheckbox Element (for handle multiple checkbox with the same name checkbox[keyOne] checkbox[keyTwo]
 - Modify Filter and Validator (More powerful, and configurable)
 
