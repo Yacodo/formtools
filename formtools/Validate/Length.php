@@ -36,7 +36,7 @@ class Length extends Base {
 
 		}
 
-		$len = (\function_exists('mb_strlen')) ? \mb_strlen($value, $this->_encoding) : strlen($value);
+		$len = (\function_exists('mb_strlen')) ? \mb_strlen($value, $this->_encoding) : \strlen($value);
 
 		if($this->_min > $len){
 
@@ -44,7 +44,7 @@ class Length extends Base {
 
 		}
 
-		if($len > $this->_max){
+		if($this->_max > $this->_min AND $len > $this->_max){
 
 			return $this->_error(array('$value' => $value, '$max' => $this->_max), self::MORE);
 
