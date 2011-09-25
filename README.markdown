@@ -12,7 +12,7 @@ Basic knowledge:
 	- Push (Button, Image, Reset, Submit)
 		- Not required for validation
 	- Input (Checkbox, File, Hidden, Password, Text)
-		-Simple creation if you need special attribute frequently
+		- Simple creation if you need special attribute frequently
 	- Options (Radio, Select and one day MultiCheckbox for name="checkbox[keyOne]" like)
 	- And Textarea (4 types ? nooo !)
 - Simple filter and validator
