@@ -13,15 +13,18 @@ class Length extends atoum\test {
 
 		$validatorHW = new Validate\Length(0, 11);
 		$validatorAll = new Validate\Length(5, 12);
+		$validatorMin = new Validate\Length(4);
 
 		$this->assert->boolean($validatorHW->isValid('hello world'))->isTrue()
 			->setWith($validatorAll->isValid($all = 'hello world!'))->isTrue()
-			->setWith($validatorHW->isValid(''))->isTrue();
+			->setWith($validatorHW->isValid(''))->isTrue()
+			->setWith($validatorMin->isValid(\md5(uniqid())))->isTrue();
 
 		$this->assert->string($validatorHW->isValid($all))->isEqualTo('"'.$all.'" is more than 11 characters long.')
 			->setWith($validatorAll->isValid('hello, universe!'))->isEqualTo('"hello, universe!" is more than 12 characters long.')
 			->setWith($validatorAll->isValid('php'))->isEqualTo('"php" is less than 5 characters long.')
-			->setWith($validatorAll->isValid(true))->isEqualTo('Type of value not expected.');
+			->setWith($validatorAll->isValid(true))->isEqualTo('Type of value not expected.')
+			->setWith($validatorMin->isValid('123'))->isEqualTo('"123" is less than 4 characters long.');
 
 		$validatorHW->setMessage('BAD', $validatorHW::MORE);
 		$validatorAll->setMessage('BAD', $validatorAll::LESS);
