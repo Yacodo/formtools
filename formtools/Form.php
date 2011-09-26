@@ -154,7 +154,7 @@ class Form extends Attribs {
 
 	}
 
-	public function isValid(){
+	public function isValid(\Closure $finalize = null){
 
 		$status = true;
 
@@ -186,6 +186,12 @@ class Form extends Attribs {
 				}
 
 			}
+
+		}
+
+		if($status AND $finalize instanceof \Closure){
+
+			$status = $finalize($this);
 
 		}
 
