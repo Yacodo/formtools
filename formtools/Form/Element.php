@@ -78,6 +78,13 @@ abstract class Element extends \formtools\Attribs {
 
 	}
 
+	public function setError($error){
+
+		$this->_error = $error;
+		return $this;
+
+	}
+
 	public function getError(){
 
 		return $this->_error;
@@ -228,14 +235,32 @@ abstract class Element extends \formtools\Attribs {
 
 				$all.= $this->generateLabel();
 
-			}elseif($part == 'element'){
+			}elseif($isArray = \is_array($part) OR $part == 'element'){
+
+				if(!$isArray){
+
+					$part = array('error', 'element');
+
+				}
 
 				$all.= $this->_elementDecorators['prepend'];
 				
-				//TODO Multidimensional array for choose the error position.
-				$all.= $this->generateError();
+				foreach($part AS $subPart){
 
-				$all.= $this->generateElement($this->_value);
+					switch($subPart){
+
+						case 'error':
+							$all.= $this->generateError();
+							break;
+
+						case 'element':
+							$all.= $this->generateElement($this->_value);
+							break;
+
+					}
+
+				}
+
 				$all.= $this->_elementDecorators['append'];
 
 			}
